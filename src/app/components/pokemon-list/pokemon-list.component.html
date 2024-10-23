@@ -1,7 +1,10 @@
 <div class="star-container">
     @for (pokemon of listaPokemon; track pokemon.name) {
       <div class="star">
-        <img [src]="getPokemonImage(pokemon.url)" [alt]="pokemon.name">
+        <a [routerLink]="['/pokemon', getPokemonId(pokemon.url)]">
+          <img [src]="getPokemonImage(pokemon.url)" [alt]="pokemon.name">
+        </a>
+        
       </div>
     }
   </div>

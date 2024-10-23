@@ -19,14 +19,6 @@ export class PokemonListComponent implements OnInit{
      });
     }
   
-    getPokemonId(url: string): string {
-      const parts = url.split('/');
-      return parts[parts.length - 2]; 
-    }
-  
-    getPokemonImage(url:string):string{
-      const id = this.getPokemonId(url);
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
-    }
+    
   
   }
