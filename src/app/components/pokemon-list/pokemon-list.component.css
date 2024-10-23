@@ -1,6 +1,4 @@
-body{
-    background-image: url(../recursos/img/wallpaper-iniciales.webp);
-}
+
 .star-container {
     display: flex;
     flex-wrap: wrap;

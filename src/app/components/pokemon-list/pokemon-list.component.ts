@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../../models/item.interface';
+import { Pokemon } from '../../models/item';
 import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
@@ -9,24 +9,24 @@ import { PokemonService } from '../../services/pokemon.service';
 })
 export class PokemonListComponent implements OnInit{
 
-listaPokemon :Pokemon [] = [];
-
-constructor(private pokemonService:PokemonService){}
-
-  ngOnInit(): void {
-   this.pokemonService.getPokemonList().subscribe((respuesta) =>{
-    this.listaPokemon = respuesta.results;
-   });
+  listaPokemon :Pokemon [] = [];
+  
+  constructor(private pokemonService:PokemonService){}
+  
+    ngOnInit(): void {
+     this.pokemonService.getPokemonList().subscribe((respuesta) =>{
+      this.listaPokemon = respuesta.results;
+     });
+    }
+  
+    getPokemonId(url: string): string {
+      const parts = url.split('/');
+      return parts[parts.length - 2]; 
+    }
+  
+    getPokemonImage(url:string):string{
+      const id = this.getPokemonId(url);
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+    }
+  
   }
-
-  getPokemonId(url: string): string {
-    const parts = url.split('/');
-    return parts[parts.length - 2]; 
-  }
-
-  getPokemonImage(url:string):string{
-    const id = url.split('/')[6];
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
-  }
-
-}
