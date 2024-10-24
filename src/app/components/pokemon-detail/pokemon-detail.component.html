@@ -5,10 +5,10 @@
       <div class="row g-0">
         <div class="col-md-4 d-flex flex-column justify-content-center align-items-center p-3">
           <h3 class="card-title">{{ pokemon.name | titlecase }}</h3>
-          <div>
-            <img
-              src="{{ pokemon.sprites['generation-v']?.['black-white']?.animated?.front_default || 'ruta/a/imagen/default.png' }}"
-              alt="{{ pokemon.name }} sprite animado" width="100%">
+          <div>  <!--pokemon?.sprites?.['generation-v']?.['black-white']?.animated?.front_default-->
+            <img 
+            [src]= "getPokemonImage(pokemon.id) || 'https://www.pngarts.com/files/4/Pokeball-Download-Transparent-PNG-Image.png'"
+              alt="{{ pokemon.name }} sprite animado" width="120%">
           </div>
         </div>
         <div class="col-md-8">

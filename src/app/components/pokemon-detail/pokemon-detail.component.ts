@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonDetailResponse } from '../../models/pokemon-detail';
 import { PokemonService } from '../../services/pokemon.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { POKEMON_TYPE_COLORS } from '../../models/pokemon-detail';
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
@@ -25,11 +25,17 @@ export class PokemonDetailComponent implements OnInit {
 
       this.pokemonService.getOnePokemon(parseInt(this.pokemonId)).subscribe(response => {
         this.pokemon = response;
+        console.log(this.pokemon);
       });
     }
   }
 
-  getColorForType(type: string): string{
-    return this.getColorForType(type);
+  getPokemonImage(id: number): string {
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   }
+
+  getColorForType(type: string): string {
+    return POKEMON_TYPE_COLORS[type] || '#ffffff';
+}
+
 }
