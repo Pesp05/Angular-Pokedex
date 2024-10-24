@@ -1,0 +1,8 @@
+<div class="star-container">
+    @for (pokemon of listaPokemon; track pokemon.name) {
+      <div class="star">
+        <img [src]="getPokemonImage(pokemon.url)" [alt]="pokemon.name">
+      </div>
+    }
+  </div>
+  
