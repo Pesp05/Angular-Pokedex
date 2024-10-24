@@ -1,0 +1,8 @@
+<div class="d-flex">
+    @for(item of itemList; track item.name) {
+        <div>
+            <img [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/' + item.name + '.png'"/>
+            <p>{{item.name}}</p>
+        </div>
+    }
+</div>
