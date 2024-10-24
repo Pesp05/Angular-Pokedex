@@ -1,26 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonDetailResponse } from '../../models/pokemon-detail';
 import { PokemonService } from '../../services/pokemon.service';
-import { Pokemon } from '../../models/item';
 import { ActivatedRoute } from '@angular/router';
-import { PokemonListComponent } from '../pokemon-list/pokemon-list.component';
 
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
-  styleUrl: './pokemon-detail.component.css'
+  styleUrls: ['./pokemon-detail.component.css'] // Corregido a 'styleUrls' en plural
 })
-export class PokemonDetailComponent implements OnInit{
+export class PokemonDetailComponent implements OnInit {
 
-  pokemon!:PokemonDetailResponse; //Al no estar inicializada se pone exclamación por si no hubiera
+  pokemon: PokemonDetailResponse | undefined; // Variable para almacenar el detalle del Pokémon
+  pokemonId: string | null = '';
 
-  constructor(private route:ActivatedRoute ,private pokemonService:PokemonService){}
+  constructor(
+    private route: ActivatedRoute,
+    private pokemonService: PokemonService
+  ) {}
 
   ngOnInit(): void {
-    this.pokemonService.getPokemonList().subscribe((detalles) =>{
-     let id = this.pokemonService.getPokemonId(this.pokemonService.getPokemonList());
-    })
-  }
+    this.pokemonId = this.route.snapshot.paramMap.get('id');
 
-  
+    if (this.pokemonId) {
+
+      this.pokemonService.getOnePokemon(parseInt(this.pokemonId)).subscribe(response => {
+        this.pokemon = response;
+      });
+    }
+  }
 }

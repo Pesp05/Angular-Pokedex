@@ -3,6 +3,7 @@ export interface PokemonDetailResponse {
     id: number
     name: string
     order: number
+    sprites: Sprites
     types: Type[]
     weight: number
   }
@@ -25,5 +26,23 @@ export interface PokemonDetailResponse {
   export interface Type2 {
     name: string
     url: string
+  }
+
+  export interface Sprites {
+    back_default: string
+    front_default: string
+    animated: {
+      front_default: string;
+      back_default: string;
+    }
+    "generation-v"?: {
+      "black-white"?: {
+        animated: {
+          front_default: string;
+          back_default: string;
+          // Otros sprites si los necesitas
+        };
+      };
+    };
   }
   

@@ -1,29 +1,33 @@
 @if (pokemon) {
 <div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <h3 class="card-title">{{pokemon.name}}</h3>
-        <img [src]="getPokemonImage(pokemon.url)" [alt]="pokemon.name">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <h3 class="card-title">{{ pokemon.name | titlecase }}</h3>
+      <div class="pokemon-image" style="width: 85%;">
+        <img
+          src="{{ pokemon.sprites.animated.front_default }}"
+          alt="{{ pokemon.name }} sprite animado"
+          width="100%">
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <p>ID: {{pokemon.id}}</p>
-            <p>Peso: {{pokemon.weight}} kg</p>
-            <div class="tipos-container">
-                <h5>Tipo: </h5>
-                @for (tipo of pokemon.type; track tipo.type) {
-                    <p>{{tipo.type.name| titlecase}}</p> 
-                    <!--Se utiliza el pipe titlecase para formatear los nombres 
-                    de los tipos y versiones.-->
-                }
-            </div>
-            <div class="juegos-container">
-                @for (juego of pokemon.game_indices; track juego){
-                    <p>{{juego.version.name | titlecase}}</p>
-                }
-            </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <p>ID: {{ pokemon.id }}</p>
+        <p>Peso: {{ pokemon.weight }} kg</p>
+        <div class="tipos-container">
+          <h5>Tipo:</h5>
+          @for (tipo of pokemon.types; track tipo.type.name) {
+          <p>{{ tipo.type.name | titlecase }}</p>
+          }
+        </div>
+        <div class="juegos-container">
+          <h5>Juegos:</h5>
+          @for (juego of pokemon.game_indices; track juego.version.name) {
+          <p>{{ juego.version.name | titlecase }}</p>
+          }
         </div>
       </div>
     </div>
   </div>
+</div>
 }

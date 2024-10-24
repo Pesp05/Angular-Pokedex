@@ -11,10 +11,10 @@ export class PokemonService {
 
   private apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 
-  constructor(private http:HttpClient){}
-  
-  getPokemonList():Observable<PokemonListResponse>{
-   return this.http.get<PokemonListResponse>(this.apiUrl);
+  constructor(private http: HttpClient) {}
+
+  getPokemonList(): Observable<PokemonListResponse> {
+    return this.http.get<PokemonListResponse>(`${this.apiUrl}?limit=20`);
   }
 
   getPokemonId(url: string): string {
@@ -22,12 +22,11 @@ export class PokemonService {
     return parts[parts.length - 2]; 
   }
 
-  getPokemonImage(url:string):string{
-    const id = this.getPokemonId(url);
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+  getPokemonImage(id: number): string {
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   }
-
-  getPokemonDetail(id:string):Observable<PokemonDetailResponse>{
+ 
+  getOnePokemon(id: number): Observable<PokemonDetailResponse> {
     return this.http.get<PokemonDetailResponse>(`${this.apiUrl}${id}`);
   }
 }
