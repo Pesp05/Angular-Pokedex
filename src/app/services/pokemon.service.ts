@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PokemonListResponse } from '../models/pokemon';
-import { PokemonDetailResponse } from '../models/pokemon-detail';
+import { POKEMON_TYPE_COLORS, PokemonDetailResponse } from '../models/pokemon-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,9 @@ export class PokemonService {
  
   getOnePokemon(id: number): Observable<PokemonDetailResponse> {
     return this.http.get<PokemonDetailResponse>(`${this.apiUrl}${id}`);
+  }
+
+  getColorForType(type: string): string {
+    return POKEMON_TYPE_COLORS[type] || '#d3d3d3'; 
   }
 }

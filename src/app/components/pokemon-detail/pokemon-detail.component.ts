@@ -28,4 +28,8 @@ export class PokemonDetailComponent implements OnInit {
       });
     }
   }
+
+  getColorForType(type: string): string{
+    return this.getColorForType(type);
+  }
 }
