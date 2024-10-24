@@ -1,11 +1,11 @@
 @if (pokemon) {
-<div class="card mb-3" style="max-width: 540px;">
+<div class="card mb-3 pokemon-detail-container" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <h3 class="card-title">{{ pokemon.name | titlecase }}</h3>
+      <h3 class="card-title pokemon-title">{{ pokemon.name | titlecase }}</h3>
       <div class="pokemon-image" style="width: 85%;">
         <img
-          src="{{ pokemon.sprites.animated.front_default }}"
+          src="{{ pokemon.sprites['generation-v']?.['black-white']?.animated?.front_default || 'ruta/a/imagen/default.png' }}"
           alt="{{ pokemon.name }} sprite animado"
           width="100%">
       </div>
@@ -13,11 +13,13 @@
     <div class="col-md-8">
       <div class="card-body">
         <p>ID: {{ pokemon.id }}</p>
-        <p>Peso: {{ pokemon.weight }} kg</p>
+        <p class="pokemon-weight-height">Peso: {{ pokemon.weight }} kg</p>
         <div class="tipos-container">
           <h5>Tipo:</h5>
           @for (tipo of pokemon.types; track tipo.type.name) {
-          <p>{{ tipo.type.name | titlecase }}</p>
+          <div class="type-badge">
+            <p>{{ tipo.type.name | titlecase }}</p>
+          </div>
           }
         </div>
         <div class="juegos-container">
